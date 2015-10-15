@@ -16,9 +16,7 @@ arrayType.push(stringType);
 arrayType.push(booleanType1);
 arrayType.push(objectType); 
 
-$( document ).ready(function() {
-	$("#arrayValue").html(arrayType.toString());
-	arrayType.splice(1,1);
-	$("#deleteArrayValue").html(arrayType.toString());
+console.log("Initial Array : ",arrayType.toString());
+arrayType.splice(1,1);
+console.log("After deletion Array : ",arrayType.toString());
 
-});

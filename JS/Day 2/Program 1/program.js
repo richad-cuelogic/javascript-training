@@ -100,13 +100,12 @@ var calculator = {
 
 };
 
-$( document ).ready(function() {
+
 	var addObj= calculator.addition(100,200,30,3);//33
-	$("#addValue").html(addObj);
-	var subtractObj= calculator.subtraction(100,10,"t");//70
-	$("#subtractValue").html(subtractObj);
+	console.log(addObj);
+	var subtractObj= calculator.subtraction(100,10,20);//70
+	console.log(subtractObj);
 	var divideObj= calculator.division(100,2,2,5);//5
-	$("#divideValue").html(divideObj);
-	var multiplyObj= calculator.multiplication(10,2,3,8,100);//480
-	$("#multiplyValue").html(multiplyObj);
-});
+	console.log(divideObj);
+	var multiplyObj= calculator.multiplication(10,2,3,8,100);//48000
+	console.log(multiplyObj);

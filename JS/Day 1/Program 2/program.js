@@ -15,6 +15,4 @@ arrayType.push(intType);
 arrayType.push(stringType);
 arrayType.push(booleanType1);
 arrayType.push(objectType); 
-$( document ).ready(function() {
-	$("#arrayValue").html(arrayType.toString());
-});
+console.log(arrayType.toString());

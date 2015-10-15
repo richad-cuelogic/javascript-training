@@ -22,12 +22,10 @@ var objectFunctionType = new function(){
 		return this.firstname + " " + this.lastname ;
 	};
 };
-$( document ).ready(function() {
-$("#objectLiteralValue").html(objectType.fullname());
-/**********************************/
- var object1 = new objectConstructorType("RD","Constructor");
- $("#constructorObjectValue").html(object1.fullname());
-/**********************************/
-$("#functionObjectValue").html(objectFunctionType.fullname());
 
-});
+console.log("Literal Type :", objectType.fullname());
+/**********************************/
+var object1 = new objectConstructorType("RD","Constructor");
+console.log("Constructor Type : ",object1.fullname());
+/**********************************/
+console.log("Function Type : ",objectFunctionType.fullname());

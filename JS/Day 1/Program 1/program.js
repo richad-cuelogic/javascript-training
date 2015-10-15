@@ -9,11 +9,3 @@ var objectType = {
 		return this.firstname + " " + this.lastname ;
 	}
 };
-
-$( document ).ready(function() {
-	$("#intValue").html(intType);
-	$("#stringValue").html(stringType);
-	$("#booleanValue").html(booleanType);
-	$("#objectValue").html(objectType.fullname());
-	$("#arrayValue").html(arrayType);
-});

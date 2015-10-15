@@ -45,8 +45,6 @@ var loopFunctions = {
 
 
 
-$( document ).ready(function() {
-	$("#forLoop").html(loopFunctions.forLoop());
-	$("#whileLoop").html(loopFunctions.forLoop());
-	$("#doWhile").html(loopFunctions.forLoop());
-});
+	console.log("For Loop : ",loopFunctions.forLoop());
+	console.log("While Loop : ",loopFunctions.whileLoop());
+	console.log("Do while Loop : ",loopFunctions.doWhileLoop());

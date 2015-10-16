@@ -9,3 +9,4 @@ var objectType = {
 		return this.firstname + " " + this.lastname ;
 	}
 };
+ 

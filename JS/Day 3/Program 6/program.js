@@ -5,17 +5,10 @@ var arrayObject = {
 			arrayObject.array.push(i);
 		}
 	},
-	printArrayWithToString : function(){
-		console.log(arrayObject.array.toString());
-	},
-	printArrayWithValueOf : function(){
-		console.log(arrayObject.array.valueOf());
-	},
 	printArrayWithJoin : function(){
-		console.log(arrayObject.array.join());
+		console.log(arrayObject.array.join("\n"));
 	}
 }
 
 arrayObject.initialiseArray();
-arrayObject.printArrayWithValueOf();
 arrayObject.printArrayWithJoin();

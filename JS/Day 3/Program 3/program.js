@@ -12,4 +12,5 @@ function stringMethods(str1,str2){
 	}
 	
 }
-stringMethods("Richa Dagar Richa Dagar Richa Dagar Richa Dagar Richa Dagar","test");
+console.log("Long string containing the substring : ",stringMethods("Richa Dagar Richa Dagar Richa Dagar Richa Dagar Richa Dagar","Richa"));
+console.log("If substring not in long string : ",stringMethods("Richa Dagar Richa Dagar Richa Dagar Richa Dagar Richa Dagar","test"));

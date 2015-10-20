@@ -4,4 +4,4 @@ function unixTimeToUTCDateConverter(unixTimestamp){
                   day.getUTCHours(), day.getUTCMinutes(), day.getUTCSeconds()).getTime();
   return dayUTC;
 }
-console.log("Unix timestamp : 1444999527 converted to UTC timestamp : ",unixTimeToUTCDateConverter(1444999527));
+console.log("Unix timestamp : 1445345524 converted to UTC timestamp : ",unixTimeToUTCDateConverter(1445345524));

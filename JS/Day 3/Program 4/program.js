@@ -1,9 +1,7 @@
 function unixTimeToUTCDateConverter(unixTimestamp){
   var day = new Date(unixTimestamp * 1000);
-  var getOffset = day.getTimezoneOffset();
-  console.log("get offset",getOffset);
-  var utcDate= new Date().getTime() + getOffset;
-  console.log("utcDate",utcDate);
+  var dayUTC = new Date(day.getUTCFullYear(), day.getUTCMonth(), day.getUTCDate(), 
+                  day.getUTCHours(), day.getUTCMinutes(), day.getUTCSeconds()).getTime();
+  return dayUTC;
 }
-
-console.log(unixTimeToUTCDateConverter(1444999527));
+console.log("Unix timestamp : 1444999527 converted to UTC timestamp : ",unixTimeToUTCDateConverter(1444999527));

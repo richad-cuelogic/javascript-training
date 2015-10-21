@@ -15,7 +15,7 @@ function objectCopy(source,target) {
  	} 
   	  	return target; 
 }  
-  employee = deepCopy(person,employee); 
+  employee = objectCopy(person,employee); 
 //  employee.name ="RD Rocks !!!!";
 //  employee.education ="CS";
   console.log("Employee",employee);

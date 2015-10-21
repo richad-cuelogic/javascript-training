@@ -9,7 +9,7 @@ function objectCopy(source,target) {
  for (var i in source) {  
   		if (typeof source[i] === 'object') {     
   			target[i] = (source[i].constructor === Array)?[]:{};   
-  	  		deepCopy(source[i],target[i]);   
+  	  		objectCopy(source[i],target[i]);   
   		} 
   	 else target[i] = source[i];
  	} 

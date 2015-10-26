@@ -1,28 +1,11 @@
-// 1. Create an event Bus, the following example demonstrates how it will be used
 
-// var event = new EventBus();
-
-// // add a event listener for an event
-// event.on('something',function(data) {
-//   console.log(data);
-// });
-
-// // trigger the event, second argument will be the data passed
-// event.trigger('something',{name : 'Pranay'});
-
-// // stop listening to that event
-// event.off('something');
-
-
-// Define a new event.
-
-function EventTarget(){
+function EventBus(){
     this._listeners = {};
 }
 
-EventTarget.prototype = {
+EventBus.prototype = {
 
-    constructor: EventTarget,
+    constructor: EventBus,
 
     on: function(type, listener){
         if (typeof this._listeners[type] == "undefined"){
@@ -30,23 +13,14 @@ EventTarget.prototype = {
         }
 
         this._listeners[type].push(listener);
-        
     },
 
     trigger: function(event,data){
         if (typeof event == "string"){
             event = { type: event };
-        }
-        if (!event.target){
-            event.target = this;
-        }
+        }       
         if (typeof data == "object"){
             event.data = data;
-        }
-
-
-        if (!event.type){  //falsy
-            throw new Error("Event object missing 'type' property.");
         }
 
         if (this._listeners[event.type] instanceof Array){
@@ -54,7 +28,9 @@ EventTarget.prototype = {
             for (var i=0, len=listeners.length; i < len; i++){
                 listeners[i].call(this, event);
             }
+
         }
+       
     },
 
     off: function(type, listener){
@@ -70,11 +46,15 @@ EventTarget.prototype = {
     }
 };
 
-var target = new EventTarget();
+var events = new EventBus();
 function handleEvent(event){
-    console.log(event.type);
+   console.log("Event type :",event.type,"Event data :", event.data);
 };
 
-target.on("something", handleEvent);
-target.trigger("something", {name : 'Pranay'});    
-target.off("something", handleEvent);
+events.on("myEvent", handleEvent);
+events.trigger("myEvent", {name : 'Pranay'});    
+events.off("myEvent", handleEvent);
+
+events.on("myEventRicha", handleEvent);
+events.trigger("myEventRicha", {name : 'Richa'});    
+events.off("myEventRicha", handleEvent);

@@ -40,7 +40,7 @@ function mergeObjects(objectA,objectB){
   	  	return merge; 
 }
 
-var nestedObject = mergeObjects({name : 'Richa Dagar', education : {degree : 'B.TECH',batch :'2012'}},{})
+var nestedObject = mergeObjects({name : 'Richa Dagar', education : {degree : 'B.TECH',batch :'2012'}},{ name : 'Shital' ,designation : 'SSE'})
 console.log("Object 1 : ",person);
 console.log("Object 2 : ",employee);
 mergeObject = mergeObjects(person,employee);

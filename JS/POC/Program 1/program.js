@@ -13,6 +13,10 @@ EventBus.prototype = {
         }
 
         this._listeners[type].push(listener);
+        console.log(this._listeners); 
+        // Object {myEvent: Array[1]}myEvent: Array[1]__proto__: Object
+
+        //myEvent -> handleEvent;
     },
 
     trigger: function(event,data){
@@ -47,14 +51,14 @@ EventBus.prototype = {
 };
 
 var events = new EventBus();
-function handleEvent(event){
+function handleEvent(){
    console.log("Event type :",event.type,"Event data :", event.data);
 };
 
 events.on("myEvent", handleEvent);
-events.trigger("myEvent", {name : 'Pranay'});    
-events.off("myEvent", handleEvent);
+//events.trigger("myEvent", {name : 'Pranay'});    
+//events.off("myEvent", handleEvent);
 
-events.on("myEventRicha", handleEvent);
-events.trigger("myEventRicha", {name : 'Richa'});    
-events.off("myEventRicha", handleEvent);
+//events.on("myEventRicha", handleEvent);
+//events.trigger("myEventRicha", {name : 'Richa'});    
+//events.off("myEventRicha", handleEvent);

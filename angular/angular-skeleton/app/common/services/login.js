@@ -1,25 +1,28 @@
 angular.module('login.service',[])
-       .service('loginService',[loginService]);
+			 .service('loginService',['$q', loginService]);
 
+function loginService($q) {
+	var service = {};
+	
+	
+	function login(username,password) {
+		return $q(function(resolve, reject) {
+			var loginValid= false;
+			var credentials = { 'rd@gmail.com' : 'rd123' ,'pratibha.mishra@gmail.com' : 'pratu123','shital.agarwal@gmail.com' :'shitala123'} ;
+			if(credentials[username]!=undefined  && credentials[username] == password){
+					resolve(true);
+			} else {
+				reject(false);
+			}
 
+			
 
-function loginService() {
+    });
 
-  var service = {};
-  service.login = login;
-  return service;
+	}
 
-  $scope.credentials = { 'rd@gmail.com' : 'rd123' ,'pratu@gmail.com' : 'pratu123','shitala@gmail.com' :'shitala123'} ;
+	service.login = login;
 
+	return service;
 
-  function login() {
-   $scope.loginValid= false;
-    if($scope.credentials[$scope.username] && $scope.credentials[$scope.username]== $scope.password){
-        $scope.loginValid= true;
-    }
-    return $scope.loginValid;
-  };
-  
-        
-  return true;
 };

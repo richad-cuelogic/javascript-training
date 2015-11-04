@@ -1,1 +1,1 @@
-angular.module('login',['login.controller','login.route']);
+angular.module('login',['login.controller','login.route','login.service']);

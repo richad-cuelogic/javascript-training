@@ -27,13 +27,15 @@
   <div ng-view></div>
 
   <div>Angular seed app: v<span app-version></span></div>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+ 
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   
   <!-- Common files to be loaded first -->
   <script src="app/common/directives/index.js"></script>
   <script src="app/common/services/user.js"></script>
+  <script src="app/common/services/login.js"></script>
+  <script src="app/common/services/home.js"></script>
   <script src="app/common/services/index.js"></script>
 
   <!-- User module -->
@@ -44,6 +46,10 @@
   <script src="app/login/login.controller.js"></script>
   <script src="app/login/login.route.js"></script>
   <script src="app/login/index.js"></script>
+  <!-- Home module -->
+   <script src="app/home/home.controller.js"></script>
+  <script src="app/home/home.route.js"></script>
+  <script src="app/home/index.js"></script>
   <!-- Main module -->
   <script src="app/app.js"></script>
 

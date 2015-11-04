@@ -1,4 +1,4 @@
-<div ng-init-"employeeInfo()" >
+<div ng-init-"employeeName()" >
 <h2>Hello {{name}}</h2>
 <div ng-show="error" class="alert alert-danger">{{error}}</div>
 </div>
@@ -16,7 +16,7 @@
 				 </tr>
 			 </thead>
 		    <tbody>
-		      	<tr ng-repeat="employee in employees" ng-click="edit()">
+		      	<tr ng-repeat="employee in employees" ng-click="edit(employee.username)">
 					<td>{{employee.name}}</td>
 					<td>{{employee.address}}</td>
 					<td>{{employee.email}}</td>

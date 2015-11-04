@@ -33,17 +33,24 @@ function homeService($q) {
                               'education': 'MCA'
                           }
                        };
-    function employeeInfo(username) {
-    return $q(function(resolve, reject) {
-      if(employees[username]!=undefined){
-          resolve(employees[username]['name']);
-      } else {
-        reject('Not registered');
-      }
+    function employeeName(username) {
+      return $q(function(resolve, reject) {
+        if(employees[username]!=undefined){
+            resolve(employees[username]['name']);
+        } else {
+          reject('Not registered');
+        }
+      });
 
-      
-
-    });
+  }
+  function employeeInfo(username) {
+      return $q(function(resolve, reject) {
+        if(employees[username]!=undefined){
+            resolve(employees[username]);
+        } else {
+          reject('Not registered');
+        }
+      });
 
   }
   function employeesList() {
@@ -57,8 +64,21 @@ function homeService($q) {
 
   }
 
+  function employeeEdit() {
+    return $q(function(resolve, reject) {
+      if(typeof employees == 'object'){
+          resolve(employees);
+      } else {
+        reject('Cannot update');
+      }   
+    });
+
+  }
+
+  service.employeeName = employeeName;
   service.employeeInfo = employeeInfo;
   service.employeesList = employeesList;
+  service.employeeEdit = employeeEdit;
   return service;
 
 };

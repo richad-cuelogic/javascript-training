@@ -16,7 +16,7 @@ function homeService($q) {
                           },
                           'pratibha@gmail.com' : {
                               'name': 'Pratibha Mishra',
-                              'username': 'prati@gmail.com',
+                              'username': 'pratibha@gmail.com',
                               'address': 'Bund Garden',
                               'email': 'pratibha@gmail.com',
                               'age': 21,
@@ -25,7 +25,7 @@ function homeService($q) {
                           },
                           'ashwini@gmail.com' : {
                               'name': 'Ashwini Chitnis',
-                              'username': 'ash@gmail.com',
+                              'username': 'ashwini@gmail.com',
                               'address': 'Bund Garden',
                               'email': 'ashwini@gmail.com',
                               'age': 22,
@@ -64,8 +64,20 @@ function homeService($q) {
 
   }
 
-  function employeeEdit() {
-    return $q(function(resolve, reject) {
+  function updateEmployeeInfo(objParams) {
+    employees[username] = objParams;
+    return $q(function(resolve, reject) {   
+      if(typeof employees == 'object'){
+          resolve(employees);
+      } else {
+        reject('Cannot update');
+      }   
+    });
+
+  }
+   function deleteEmployee(username) {  
+    return $q(function(resolve, reject) {   
+     delete employees[username];
       if(typeof employees == 'object'){
           resolve(employees);
       } else {
@@ -78,7 +90,8 @@ function homeService($q) {
   service.employeeName = employeeName;
   service.employeeInfo = employeeInfo;
   service.employeesList = employeesList;
-  service.employeeEdit = employeeEdit;
+  service.updateEmployeeInfo = updateEmployeeInfo;
+  service.deleteEmployee = deleteEmployee;
   return service;
 
 };

@@ -16,15 +16,18 @@
 				 </tr>
 			 </thead>
 		    <tbody>
-		      	<tr ng-repeat="employee in employees" ng-click="edit(employee.username)">
-					<td>{{employee.name}}</td>
-					<td>{{employee.address}}</td>
-					<td>{{employee.email}}</td>
-					<td>{{employee.age}}</td>
-					<td>{{employee.gender}}</td>
-					<td>{{employee.education}}</td>
-					<td>Delete</td>
+		      	<tr ng-repeat="employee in employees">
+					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.name}}</a></td>
+					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.address}}</a></td>
+					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.email}}</a></td>
+					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.age}}</a></td>
+					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.gender}}</a></td>
+					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.education}}</a></td>
+					
+					<td><a ng-click="deleteEmployee(employee.username)" >Delete</a></td>
+
 				</tr>
+				
 			</tbody>
 		</table>
 </div>

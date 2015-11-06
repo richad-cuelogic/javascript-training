@@ -1,7 +1,7 @@
 angular.module('home.controller',['services'])
-      .controller('homeCtrl',['$scope','$routeParams','$rootScope','$location','homeService', HomeController])
+      .controller('homeCtrl',['$scope','$routeParams','$rootScope','$location','$filter','homeService', HomeController])
 
-function HomeController($scope,$routeParams,$rootScope,$location,homeService) { 
+function HomeController($scope,$routeParams,$rootScope,$location,$filter,homeService) { 
 	$scope.employees = {
                           'rd@gmail.com' : {
                               'name': 'Richa Dagar',
@@ -80,4 +80,15 @@ function HomeController($scope,$routeParams,$rootScope,$location,homeService) {
 	 	);
     };
   
+  	
+  	$scope.predicate = 'name';
+    $scope.reverse = true;
+     var orderBy = $filter('orderBy');
+    $scope.order = function() {
+    	$scope.predicate = $scope.sortOption;
+        $scope.reverse = ($scope.predicate === $scope.sortOption) ? !$scope.reverse : false;   
+        $scope.employees =  orderBy($scope.employees, $scope.predicate, $scope.reverse );
+
+    };
+
 };

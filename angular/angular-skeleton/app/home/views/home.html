@@ -4,6 +4,17 @@
 </div>
 <div>
 	<h3>Employees List</h3>
+	 <div class="row">             
+                    <div class="custom-select">                   
+                        <select name="sortOption" id="sortOption" ng-model="sortOption" ng-change="order()">
+		                    <option value="name">Name</option>
+							<option value="email">Email</option>
+							<option value="age">Age</option>
+							<option value="gender">Gender</option>
+                        </select>                   
+                	</div>
+              
+            </div>
 		<table class="table table-striped">
 		    <thead>
 			    <tr>
@@ -16,7 +27,7 @@
 				 </tr>
 			 </thead>
 		    <tbody>
-		      	<tr ng-repeat="employee in employees">
+		      	<tr ng-repeat="employee in employees | orderBy:predicate:reverse">
 					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.name}}</a></td>
 					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.address}}</a></td>
 					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.email}}</a></td>

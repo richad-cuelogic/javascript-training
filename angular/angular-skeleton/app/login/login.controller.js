@@ -6,7 +6,7 @@ function LoginController($scope,loginService,$rootScope, $location) {
   $scope.login = function (){
      loginService.login($scope.username,$scope.password).then(
       function(response) {
-         $location.path('/home/'+$scope.username);
+         $location.path('/home/');
          $rootScope.username = $scope.username;
       }, function(rejected){
         $scope.error="Invalid username/password";

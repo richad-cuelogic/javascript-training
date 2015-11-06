@@ -1,1 +1,1 @@
-angular.module('home',['home.route','home.controller','home.service']);
+angular.module('home',['home.route','home.controller','home.service','home.controller','addemployee.controller']);

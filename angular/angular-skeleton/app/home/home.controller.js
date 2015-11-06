@@ -1,9 +1,9 @@
 angular.module('home.controller',['services'])
-      .controller('homeCtrl',['$scope','$routeParams','$rootScope','$location','$filter','homeService', HomeController])
+      .controller('homeCtrl',['$scope','$routeParams','$rootScope','$location','homeService', HomeController])
 
-function HomeController($scope,$routeParams,$rootScope,$location,$filter,homeService) { 
-	$scope.employees = {
-                          'rd@gmail.com' : {
+function HomeController($scope,$routeParams,$rootScope,$location,homeService) { 
+	$scope.employees = [
+                           {
                               'name': 'Richa Dagar',
                               'username': 'rd@gmail.com',
                               'address': 'Bund Garden',
@@ -13,7 +13,7 @@ function HomeController($scope,$routeParams,$rootScope,$location,$filter,homeSer
                               'education': 'B.Tech'
 
                           },
-                          'pratibha@gmail.com' : {
+                           {
                               'name': 'Pratibha Mishra',
                               'username': 'pratibha@gmail.com',
                               'address': 'Bund Garden',
@@ -22,7 +22,7 @@ function HomeController($scope,$routeParams,$rootScope,$location,$filter,homeSer
                               'gender': 'female',
                               'education': 'MCA'
                           },
-                          'ashwini@gmail.com' : {
+                           {
                               'name': 'Ashwini Chitnis',
                               'username': 'ashwini@gmail.com',
                               'address': 'Bund Garden',
@@ -30,9 +30,23 @@ function HomeController($scope,$routeParams,$rootScope,$location,$filter,homeSer
                               'age': 22,
                               'gender': 'female',
                               'education': 'MCA'
+                          },
+                          {
+                              'name': 'Pranay Dubey',
+                              'username': 'pranay@gmail.com',
+                              'address': 'Bund Garden',
+                              'email': 'pranay@gmail.com',
+                              'age': 20,
+                              'gender': 'male',
+                              'education': 'MCA'
                           }
-                       };
-    $rootScope.username = $routeParams.username;
+                       ];
+      $scope.isEdit= false;
+     if($routeParams.username){
+     	$rootScope.username = $routeParams.username;
+     	$scope.isEdit= true;
+     }
+    
 	 homeService.employeeInfo($routeParams.username).then(
 	      function(response) {
 	         $scope.employee = response;
@@ -68,10 +82,11 @@ function HomeController($scope,$routeParams,$rootScope,$location,$filter,homeSer
 	      } 
 	 );
   	};
-  	$scope.deleteEmployee = function (){
-  		 homeService.deleteEmployee($scope.employee.username).then(
+  	$scope.deleteEmployee = function (username){
+  		 homeService.deleteEmployee(username).then(
 	      function(response) {
 	         $scope.employees = response;
+
 	      	$location.path('/home/'+ $rootScope.username);
 
 	      }, function(rejected){
@@ -79,16 +94,23 @@ function HomeController($scope,$routeParams,$rootScope,$location,$filter,homeSer
 	      } 
 	 	);
     };
-  
+  	$scope.addEmployee = function (){
+  	 homeService.addEmployeeInfo($scope.employee).then(
+	      function(response) {
+	         $scope.employees = response;
+	      	$location.path('/home/'+ $rootScope.username);
+
+	      }, function(rejected){
+	        $scope.error=rejected;
+	      } 
+	 );
+  	};
   	
-  	$scope.predicate = 'name';
+  	$scope.predicate = "name";
     $scope.reverse = true;
-     var orderBy = $filter('orderBy');
     $scope.order = function() {
     	$scope.predicate = $scope.sortOption;
-        $scope.reverse = ($scope.predicate === $scope.sortOption) ? !$scope.reverse : false;   
-        $scope.employees =  orderBy($scope.employees, $scope.predicate, $scope.reverse );
-
+        $scope.reverse = ($scope.predicate === $scope.sortOption) ? !$scope.reverse : false;    
     };
 
 };

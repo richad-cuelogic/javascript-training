@@ -3,52 +3,69 @@ angular.module('home.service',[])
 
 function homeService($q) {
   var service = {};
-     var employees = {
-                          'rd@gmail.com' : {
+     var employees = [
+                           {
                               'name': 'Richa Dagar',
                               'username': 'rd@gmail.com',
-                              'address': 'Bund Garden',
+                              'address': 'Viman Nagar',
                               'email': 'rd@gmail.com',
                               'age': 23,
                               'gender': 'female',
                               'education': 'B.Tech'
 
                           },
-                          'pratibha@gmail.com' : {
+                          {
                               'name': 'Pratibha Mishra',
                               'username': 'pratibha@gmail.com',
-                              'address': 'Bund Garden',
+                              'address': 'Magarpatta',
                               'email': 'pratibha@gmail.com',
                               'age': 21,
                               'gender': 'female',
-                              'education': 'MCA'
+                              'education': 'BCA'
                           },
-                          'ashwini@gmail.com' : {
+                           {
                               'name': 'Ashwini Chitnis',
                               'username': 'ashwini@gmail.com',
-                              'address': 'Bund Garden',
+                              'address': 'Ashok Nagar',
                               'email': 'ashwini@gmail.com',
                               'age': 22,
                               'gender': 'female',
                               'education': 'MCA'
+                          },
+                          {
+                              'name': 'Pranay Dubey',
+                              'username': 'pranay@gmail.com',
+                              'address': 'Bund Garden',
+                              'email': 'pranay@gmail.com',
+                              'age': 20,
+                              'gender': 'male',
+                              'education': 'MCA'
                           }
-                       };
+                       ];
     function employeeName(username) {
       return $q(function(resolve, reject) {
-        if(employees[username]!=undefined){
-            resolve(employees[username]['name']);
-        } else {
-          reject('Not registered');
+        for(var i=0;i<=employees.length;i++)
+        { 
+           if(employees[i]["username"]==username){
+                resolve(employees[i]["name"]);
+                break;
+            } else {
+              reject('Not registered');
+            }
         }
       });
 
   }
   function employeeInfo(username) {
       return $q(function(resolve, reject) {
-        if(employees[username]!=undefined){
-            resolve(employees[username]);
-        } else {
-          reject('Not registered');
+        for(var i=0;i<=employees.length;i++)
+        { 
+           if(employees[i]["username"]==username){
+                resolve(employees[i]);
+                break;
+            } else {
+              reject('Not registered');
+            }
         }
       });
 
@@ -65,7 +82,7 @@ function homeService($q) {
   }
 
   function updateEmployeeInfo(objParams) {
-    employees[username] = objParams;
+    employees.push(objParams);
     return $q(function(resolve, reject) {   
       if(typeof employees == 'object'){
           resolve(employees);
@@ -76,12 +93,26 @@ function homeService($q) {
 
   }
    function deleteEmployee(username) {  
+    return $q(function(resolve, reject) {
+     for(var i=0;i<=employees.length;i++)
+        { 
+           if(employees[i]["username"]==username){
+                 delete employees[i];
+                resolve(employees);
+                break;
+            } 
+        }      
+    });
+
+  }
+
+  function addEmployee(objParams) {
+    employees.push(objParams);
     return $q(function(resolve, reject) {   
-     delete employees[username];
       if(typeof employees == 'object'){
           resolve(employees);
       } else {
-        reject('Cannot update');
+        reject('Cannot add');
       }   
     });
 
@@ -92,6 +123,7 @@ function homeService($q) {
   service.employeesList = employeesList;
   service.updateEmployeeInfo = updateEmployeeInfo;
   service.deleteEmployee = deleteEmployee;
+  service.addEmployee = addEmployee;
   return service;
 
 };

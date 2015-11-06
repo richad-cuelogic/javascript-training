@@ -1,5 +1,5 @@
-<div class="col-md-6 col-md-offset-3" ng-init="employeeInfo()">
-    <h2>Edit Employee {{name}} </h2>
+<div class="col-md-6 col-md-offset-3">
+    <h2>{{isEdit ? 'Edit' : 'Add'}} Employee {{isEdit ? name :''}} </h2>
     <div ng-show="error" class="alert alert-danger">{{error}}</div>
     <form name="editform" ng-submit="updateEmployeeInfo()" role="form">
         <div class="form-group" ng-class="{ 'error': editform.username.$dirty && editform.username.$error.required }">
@@ -35,7 +35,7 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" ng-disabled="editform.$invalid" class="btn btn-primary">Update</button>
+            <button type="submit" ng-disabled="editform.$invalid" class="btn btn-primary">{isEdit ? 'Update' : 'Add'}} </button>
         </div>
     </form>
 </div>

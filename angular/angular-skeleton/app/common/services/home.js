@@ -44,7 +44,7 @@ function homeService($q) {
                        ];
     function employeeName(username) {
       return $q(function(resolve, reject) {
-        for(var i=0;i<=employees.length;i++)
+        for(var i=0;i<employees.length;i++)
         { 
            if(employees[i]["username"]==username){
                 resolve(employees[i]["name"]);
@@ -58,7 +58,7 @@ function homeService($q) {
   }
   function employeeInfo(username) {
       return $q(function(resolve, reject) {
-        for(var i=0;i<=employees.length;i++)
+        for(var i=0;i<employees.length;i++)
         { 
            if(employees[i]["username"]==username){
                 resolve(employees[i]);
@@ -94,7 +94,7 @@ function homeService($q) {
   }
    function deleteEmployee(username) {  
     return $q(function(resolve, reject) {
-     for(var i=0;i<=employees.length;i++)
+     for(var i=0;i<employees.length;i++)
         { 
            if(employees[i]["username"]==username){
                  delete employees[i];

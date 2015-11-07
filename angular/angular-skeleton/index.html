@@ -30,13 +30,17 @@
  
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
   
-  <!-- Common files to be loaded first -->
+  <!--Common files to be loaded first -->
   <script src="app/common/directives/index.js"></script>
+  <script src="app/common/services/index.js"></script>
+  <script src="app/common/services/localStorage.js"></script>
+  <script src="app/common/services/interceptor.js"></script>
   <script src="app/common/services/user.js"></script>
   <script src="app/common/services/login.js"></script>
   <script src="app/common/services/home.js"></script>
-  <script src="app/common/services/index.js"></script>
+
 
   <!-- User module -->
   <script src="app/user/user.controller.js"></script>

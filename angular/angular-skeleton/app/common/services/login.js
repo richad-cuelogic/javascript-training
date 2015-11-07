@@ -10,7 +10,7 @@ function loginService($q) {
 			var loginValid= false;
 			var credentials = { 'rd@gmail.com' : 'rd123' ,'pratibha.mishra@gmail.com' : 'pratu123','shital.agarwal@gmail.com' :'shitala123'} ;
 			if(credentials[username]!=undefined  && credentials[username] == password){
-					resolve(true);
+					resolve(credentials[username]);
 			} else {
 				reject(false);
 			}

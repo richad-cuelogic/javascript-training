@@ -2,6 +2,8 @@ angular.module('delete.employee', [])
 .directive('deleteEmployee', function() {
   return {
   	restrict: 'E',
-    templateUrl: 'delete-employee.html'
+    templateUrl: 'app/home/views/delete-employee.html',
+     controller: 'homeCtrl'
+    //link : //$('.employee-list').append();
   };
 });

@@ -36,7 +36,7 @@
 				 </tr>
 			 </thead>
 		    <tbody>
-		      	<tr ng-repeat="employee in employees | orderBy:predicate:reverse">
+		      	<tr ng-repeat="employee in employees | orderBy:predicate:reverse" class="employee-list">
 					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.name}}</a></td>
 					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.address}}</a></td>
 					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.email}}</a></td>

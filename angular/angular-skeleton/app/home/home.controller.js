@@ -118,6 +118,7 @@ function HomeController($scope,$routeParams,$rootScope,$location,apiLocalStorage
   $scope.clearLocalStorage = function() {
             apiLocalStorageService.clearAll();
              $location.path('/login');
+             apiLocalStorageService.get('tokenid');
   }
   	$scope.predicate = "name";
     $scope.reverse = true;

@@ -21,12 +21,13 @@ config(['$routeProvider', function($routeProvider) {
             $httpProvider.interceptors.push('interceptorService');
         }
     ])
-    .run(['$rootScope', '$location', 'apiLocalStorageService',
-        function($rootScope, $location, apiLocalStorageService) {
-            if ($location.search().tokenid) {
-                apiLocalStorageService.set('tokenid', $location.search().tokenid);
-                $location.search('tokenid', null);
-            }
+    .run(['$rootScope', '$location', 'apiLocalStorageService','loginService',
+        function($rootScope, $location, apiLocalStorageService,loginService) {     
+        $rootScope.$on('$routeChangeSuccess',function(){
+             if (apiLocalStorageService.get('tokenid')==null || apiLocalStorageService.get('tokenid')==undefined) {                
+                $location.path('/login');
+             }
+         })
         }
     ]);
 

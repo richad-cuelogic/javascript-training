@@ -44,8 +44,10 @@
 					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.gender}}</a></td>
 					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.education}}</a></td>
 					
-					<!--<td><a ng-click="deleteEmployee(employee.username)" ng-if="employee.username">Delete </a></td>-->
-					<delete-employee></delete-employee>
+					<td>
+						<delete-employee username="{{employee.username}}"></delete-employee>
+					</td>
+					<!--<a ng-click="deleteEmployee(employee.username)" ng-if="employee.username">Delete </a></td>-->
 				</tr>
 				
 			</tbody>

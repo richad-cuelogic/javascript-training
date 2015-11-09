@@ -1,7 +1,7 @@
 angular.module('home.service',[])
-       .service('homeService',['$q', homeService]);
+       .service('homeService',['$q','$rootScope','$location', homeService]);
 
-function homeService($q) {
+function homeService($q,$rootScope,$location) {
   var service = {};
      var employees = [
                            {
@@ -93,17 +93,15 @@ function homeService($q) {
 
   }
    function deleteEmployee(username) {  
-    return $q(function(resolve, reject) {
      for(var i=0;i<employees.length;i++)
         { 
            if(employees[i]["username"]==username){
-                 delete employees[i];
-                resolve(employees);
+                 delete $rootScope.employees[i];
+                $location.path('/home');
                 break;
             } 
-        }      
-    });
-
+        }  
+        return $rootScope.employees;    
   }
 
   function addEmployee(objParams) {

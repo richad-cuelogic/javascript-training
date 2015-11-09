@@ -2,7 +2,7 @@ angular.module('home.controller',['services'])
       .controller('homeCtrl',['$scope','$routeParams','$rootScope','$location','apiLocalStorageService','homeService', HomeController])
 
 function HomeController($scope,$routeParams,$rootScope,$location,apiLocalStorageService,homeService) { 
-	$scope.employees = [
+	$rootScope.employees = [
                            {
                               'name': 'Richa Dagar',
                               'username': 'rd@gmail.com',
@@ -68,7 +68,7 @@ function HomeController($scope,$routeParams,$rootScope,$location,apiLocalStorage
       if (apiLocalStorageService.isSupported()) {
          homeService.employeesList().then(
     	      function(response) {
-    	         $scope.employees = response;
+    	         $rootScope.employees = response;
 
     	      }, function(rejected){
     	        $scope.error=rejected;
@@ -79,7 +79,7 @@ function HomeController($scope,$routeParams,$rootScope,$location,apiLocalStorage
        if (apiLocalStorageService.isSupported()) {
         	 homeService.updateEmployeeInfo($scope.employee).then(
       	      function(response) {
-      	         $scope.employees = response;
+      	         $rootScope.employees = response;
       	      	$location.path('/home/'+ $rootScope.username);
 
       	      }, function(rejected){
@@ -92,7 +92,7 @@ function HomeController($scope,$routeParams,$rootScope,$location,apiLocalStorage
 
   		 homeService.deleteEmployee(username).then(
 	      function(response) {
-	         $scope.employees = response;
+	         $rootScope.employees = response;
 
 	      	$location.path('/home/'+ $rootScope.username);
 
@@ -105,7 +105,7 @@ function HomeController($scope,$routeParams,$rootScope,$location,apiLocalStorage
        if (apiLocalStorageService.isSupported()) {
         	 homeService.addEmployeeInfo($scope.employee).then(
       	      function(response) {
-      	         $scope.employees = response;
+      	        $rootScope.employees = response;
       	      	$location.path('/home/'+ $rootScope.username);
 
       	      }, function(rejected){

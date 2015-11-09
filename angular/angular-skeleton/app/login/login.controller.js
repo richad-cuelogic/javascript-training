@@ -16,7 +16,6 @@ function LoginController($scope,apiLocalStorageService,loginService,$rootScope, 
           }, function(rejected){
                   $scope.error="Invalid username/password";
           })
-          console.log("Token value : ",apiLocalStorageService.get('tokenid'));
   };
 
   $scope.validateLogin = function (){

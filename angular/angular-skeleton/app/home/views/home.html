@@ -36,7 +36,7 @@
 				 </tr>
 			 </thead>
 		    <tbody>
-		      	<tr ng-repeat="employee in employees | orderBy:predicate:reverse" class="employee-list" employee-select>
+		      	<tr ng-repeat="employee in employees | orderBy:predicate:reverse" class="employee-list" employee-select >
 					<td><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.name}}</a></td>
 					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.address}}</a></td>
 					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.email}}</a></td>

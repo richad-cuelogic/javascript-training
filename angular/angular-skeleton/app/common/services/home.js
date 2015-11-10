@@ -1,7 +1,7 @@
 angular.module('home.service',[])
-       .service('homeService',['$q','$rootScope','$location', homeService]);
+       .service('homeService',['$q','$timeout','$rootScope','$location', homeService]);
 
-function homeService($q,$rootScope,$location) {
+function homeService($q,$rootScope,$timeout,$location) {
   var service = {};
      var employees = [
                            {
@@ -63,9 +63,7 @@ function homeService($q,$rootScope,$location) {
            if(employees[i]["username"]==username){
                 resolve(employees[i]);
                 break;
-            } else {
-              reject('Not registered');
-            }
+            } 
         }
       });
 

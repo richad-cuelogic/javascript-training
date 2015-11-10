@@ -1,7 +1,7 @@
 angular.module('home.controller',['services'])
-      .controller('homeCtrl',['$scope','$routeParams','$rootScope','$location','apiLocalStorageService','homeService', HomeController])
+      .controller('homeCtrl',['$scope','$routeParams','$rootScope','$location','$timeout','apiLocalStorageService','homeService', HomeController])
 
-function HomeController($scope,$routeParams,$rootScope,$location,apiLocalStorageService,homeService) { 
+function HomeController($scope,$routeParams,$rootScope,$location,$timeout,apiLocalStorageService,homeService) { 
 	$rootScope.employees = [
                            {
                               'name': 'Richa Dagar',
@@ -50,7 +50,6 @@ function HomeController($scope,$routeParams,$rootScope,$location,apiLocalStorage
       	 homeService.employeeInfo($routeParams.username).then(
       	      function(response) {
       	         $scope.employee = response;
-
       	      }, function(rejected){
       	        $scope.error=rejected;
       	      } 
@@ -76,12 +75,18 @@ function HomeController($scope,$routeParams,$rootScope,$location,apiLocalStorage
     	 );
       }
   	 $scope.updateEmployeeInfo = function (){
+      $scope.inProcess = true;
        if (apiLocalStorageService.isSupported()) {
         	 homeService.updateEmployeeInfo($scope.employee).then(
       	      function(response) {
-      	         $rootScope.employees = response;
-      	      	$location.path('/home/'+ $rootScope.username);
-
+      	        $scope.employees = response;
+                 $timeout(function(){
+                  $scope.inProcess = false;
+                  $location.path('/home/');
+                 }, 
+                 3000);
+      	      	  
+                
       	      }, function(rejected){
       	        $scope.error=rejected;
       	      } 

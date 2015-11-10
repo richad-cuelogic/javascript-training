@@ -1,16 +1,15 @@
-angular.module('delete.employee', ['home.service'])
-.directive('deleteEmployee', function(homeService) {
+angular.module('employee.delete', ['home.service'])
+.directive('employeeDelete',['$location','homeService', function($location,homeService) {
   return {
   	restrict: 'E',
     templateUrl: 'app/home/views/delete-employee.html',
     link : function($scope, $element, attr) {
     $element.on("click",function(){
-    	console.log(attr.username);
-    	alert("on click");
      	homeService.deleteEmployee(attr.username);
-     	
+     	   $rootScope.employees = response;
+          $location.path('/home/');
      });
     }
 
   };
-});
+}]);

@@ -29,3 +29,9 @@
   padding: 0;
 }
 
+.bg-green {
+ background-color: #00CC33;
+}
+.bg-green-none{
+ background-color: none !important ;
+}

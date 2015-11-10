@@ -10,7 +10,7 @@ angular.module('employee.save', ['home.service'])
       $scope.inProcess = true;
            homeService.updateEmployeeInfo(attr.employee).then(
               function(response) {
-                 $rootScope.employees = response;
+                 //$rootScope.employees = response;
                  $timeout(function(){
                   $scope.inProcess = false;
                   $location.path('/home/');

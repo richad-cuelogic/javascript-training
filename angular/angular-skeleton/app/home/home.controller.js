@@ -119,7 +119,15 @@ function HomeController($scope,$routeParams,$rootScope,$location,$timeout,apiLoc
       	 );
         }
   	};
-  	
+  	 
+  $scope.editEmployeeRedirect = function(username){
+        $location.path('/home/employeeEdit/'+username);
+  };
+  $scope.editEmployeeSelected = function(){
+       $scope.isSelected =false;
+       
+  };
+
   $scope.clearLocalStorage = function() {
             apiLocalStorageService.clearAll();
              $location.path('/login');

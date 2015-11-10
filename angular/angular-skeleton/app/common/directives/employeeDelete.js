@@ -6,7 +6,7 @@ angular.module('employee.delete', ['home.service'])
     link : function($scope, $element, attr) {
     $element.on("click",function(){
      	homeService.deleteEmployee(attr.username);
-     	   $rootScope.employees = response;
+     	   //$rootScope.employees = response;
           $location.path('/home/');
      });
     }

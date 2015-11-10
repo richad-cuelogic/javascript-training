@@ -37,12 +37,12 @@
 			 </thead>
 		    <tbody>
 		      	<tr ng-repeat="employee in employees | orderBy:predicate:reverse" class="employee-list">
-					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.name}}</a></td>
-					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.address}}</a></td>
-					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.email}}</a></td>
-					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.age}}</a></td>
-					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.gender}}</a></td>
-					<td><a ng-href="#/home/employeeEdit/{{employee.username}}" >{{employee.education}}</a></td>
+					<td class="selected ? 'bg-green' :'bg-green-none'"><a ng-dblclick="editEmployeeRedirect(employee.username)" ng-click="">{{employee.name}}</a></td>
+					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.address}}</a></td>
+					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.email}}</a></td>
+					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.age}}</a></td>
+					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.gender}}</a></td>
+					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.education}}</a></td>
 					
 					<td>
 						<delete-employee username="{{employee.username}}"></delete-employee>

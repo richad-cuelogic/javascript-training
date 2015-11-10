@@ -36,8 +36,8 @@
 				 </tr>
 			 </thead>
 		    <tbody>
-		      	<tr ng-repeat="employee in employees | orderBy:predicate:reverse" class="employee-list">
-					<td class="selected ? 'bg-green' :'bg-green-none'"><a ng-dblclick="editEmployeeRedirect(employee.username)" ng-click="">{{employee.name}}</a></td>
+		      	<tr ng-repeat="employee in employees | orderBy:predicate:reverse" class="employee-list" employee-select>
+					<td><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.name}}</a></td>
 					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.address}}</a></td>
 					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.email}}</a></td>
 					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.age}}</a></td>
@@ -45,7 +45,7 @@
 					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.education}}</a></td>
 					
 					<td>
-						<delete-employee username="{{employee.username}}"></delete-employee>
+						<employee-delete username="{{employee.username}}"></employee-delete>
 					</td>
 					<!--<a ng-click="deleteEmployee(employee.username)" ng-if="employee.username">Delete </a></td>-->
 				</tr>

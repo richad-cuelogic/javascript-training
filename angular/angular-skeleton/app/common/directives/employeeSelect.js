@@ -1,11 +1,11 @@
-angular.module('employee.save', ['home.service'])
-.directive('employeeSave',['$timeout','$location','homeService', function($timeout,$location,homeService) {
+angular.module('employee.select', ['home.service'])
+.directive('employeeSelect',['$timeout','$location','homeService', function($timeout,$location,homeService) {
   return {
-  	restrict: 'E',
+  	restrict: 'A',
     templateUrl: 'app/home/views/employee-select.html',
     link : function($scope, $element, attr) {
     $element.on("click",function(){
-          $scope.isDisable = attr.isDisable;
+      $scope.isDisable = attr.isDisable;
       $scope.inProcess = true;
            homeService.updateEmployeeInfo(attr.employee).then(
               function(response) {
@@ -16,7 +16,7 @@ angular.module('employee.save', ['home.service'])
                  }, 
                  3000);                          
               }
-         ); 	
+         );     	
      });
     }
 

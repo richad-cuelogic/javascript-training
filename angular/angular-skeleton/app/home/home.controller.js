@@ -123,9 +123,12 @@ function HomeController($scope,$routeParams,$rootScope,$location,$timeout,apiLoc
   $scope.editEmployeeRedirect = function(username){
         $location.path('/home/employeeEdit/'+username);
   };
-  $scope.editEmployeeSelected = function(){
-       $scope.isSelected =false;
-       
+  $scope.editEmployeeSelected = function(index){
+      if($scope.isSelected[index]){        
+        $scope.isSelected[index] = false;
+      }else{
+        $scope.isSelected[index] = true;
+      }
   };
 
   $scope.clearLocalStorage = function() {

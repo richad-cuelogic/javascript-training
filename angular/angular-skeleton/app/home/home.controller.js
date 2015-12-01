@@ -2,7 +2,7 @@ angular.module('home.controller',['services'])
       .controller('homeCtrl',['$scope','$routeParams','$rootScope','$location','$timeout','apiLocalStorageService','homeService', HomeController])
 
 function HomeController($scope,$routeParams,$rootScope,$location,$timeout,apiLocalStorageService,homeService) { 
-	$rootScope.employees = [
+	$scope.employees = [
                            {
                               'name': 'Richa Dagar',
                               'username': 'rd@gmail.com',
@@ -136,6 +136,24 @@ function HomeController($scope,$routeParams,$rootScope,$location,$timeout,apiLoc
              $location.path('/login');
              apiLocalStorageService.get('tokenid');
   }
+
+  /*multiple employee selection for delete start*/
+   $scope.gridOptions = { 
+        data: 'employees',
+        showGroupPanel: true,
+        jqueryUIDraggable: true
+    };
+     $scope.multipleDeletion = function(){
+        var newEmployeeList=[];
+        angular.forEach($scope.employees,function(val){
+        if(!val.isDelete){
+            newEmployeeList.push(val);
+        }
+    });    $scope.employees=newEmployeeList;
+    };
+
+  /*multiple employee selection for delete end*/
+
   	$scope.predicate = "name";
     $scope.reverse = true;
     $scope.order = function() {

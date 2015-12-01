@@ -6,7 +6,8 @@ angular.module('myapp', [
   'LocalStorageModule',
   'user',
   'login',
-  'home'
+  'home',
+  'ngGrid'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/home'});

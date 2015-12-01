@@ -35,3 +35,9 @@
 .bg-green-none{
  background-color: none !important ;
 }
+
+.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    width: 1500px; 
+    height: 1300px;
+}

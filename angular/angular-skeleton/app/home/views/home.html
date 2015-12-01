@@ -20,13 +20,17 @@
               
             </div>
              <div class="row" align="right">             
+                     <label> <a ng-click="multipleDeletion()" > Delete Employee </a></label>
+              
+            </div>
+             <div class="row" align="right">             
                      <label> <a ng-click="clearLocalStorage()" >Logout </a></label>
               
             </div>
            
 		<table class="table table-striped">
 		    <thead>
-			    <tr>
+			    <tr><th>S.L No.</th>
 			        <th>Name</th>
 					<th>Address</th>
 					<th>Email</th>
@@ -36,9 +40,10 @@
 				 </tr>
 			 </thead>
 		    <tbody>
-		      	<tr ng-repeat="employee in employees | orderBy:predicate:reverse" class="employee-list" employee-select >
-					<td><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.name}}</a></td>
-					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.address}}</a></td>
+		      	<tr  ng-repeat="employee in employees | orderBy:predicate:reverse"  ng-class="{true: 'red', false: 'green'}[employee.isDelete]" class="employee-list" employee-select  >
+		       <td><input type="checkbox" ng-model="employee.isDelete"/>{{$index}}</td>    
+					<td><a ng-click="multipleEmployeeSelect();"  ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.name}}</a></td>
+					<td class="bg-green-none"><a  ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.address}}</a></td>
 					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.email}}</a></td>
 					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.age}}</a></td>
 					<td class="bg-green-none"><a ng-dblclick="editEmployeeRedirect(employee.username)" >{{employee.gender}}</a></td>
@@ -49,7 +54,9 @@
 					</td>
 					<!--<a ng-click="deleteEmployee(employee.username)" ng-if="employee.username">Delete </a></td>-->
 				</tr>
-				
+				<tr width="100%"><td colspan="7">Using ng-grid</td></tr>
+				<tr width="100%"><td colspan="7"> <div class="gridStyle" ng-grid="gridOptions"></div></td></tr>
 			</tbody>
+			
 		</table>
 </div>

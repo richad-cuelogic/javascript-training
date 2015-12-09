@@ -1,11 +1,22 @@
 
-var Hapi = require('hapi');
+var Hapi   = require('hapi');
+var bcrypt = require('bcrypt');
+var jwt    = require("jsonwebtoken");
 
 var server = new Hapi.Server();
 server.connection({ port: 8081 });
 
 server.start(function () {
     console.log('Server running at:', server.info.uri);
+});
+
+server.route({
+    method: 'GET',
+    path: '/authenticate/{user?}/{password}',
+    handler: function (request, reply) {
+        var user = request.params.user ? encodeURIComponent(request.params.user) : 'stranger';
+        reply('Hello ' + user + '!');
+    }
 });
 
 
@@ -29,29 +40,36 @@ var userSchema = new Schema({
   created_at: Date,
   updated_at: Date
 });
-// on every save, add the date
-userSchema.pre('save', function(next) {
-  var currentDate = new Date();
-    this.updated_at = currentDate;
-  if (!this.created_at)
-    this.created_at = currentDate;
 
-  next();
+userSchema.pre('save', function(next) {
+    var currentDate = new Date();
+    this.updated_at = currentDate;
+    if (!this.created_at)
+    this.created_at = currentDate;  
+    var user = this;
+    if (!user.isModified('password')) return next();
+    bcrypt.genSalt(10, function(err, salt) {
+          if (err) return next(err);
+          bcrypt.hash(user.password, salt, function(err, hash) {
+            if (err) return next(err);
+            user.password = hash;            
+          });
+    });
+    next();
 });
 
 var User = mongoose.model('User', userSchema);
 
 var rd = new User({
   name: 'Richa Dagar',
-  username: 'rd@gmail.com',
-  password: 'password',
+  username: 'richadagar@gmail.com',
+  password: 'password1',
   admin:true,
   location:'Viman Nagar'
 });
 
 rd.save(function(err) {
   if (err) throw err;
-
   console.log('User saved successfully!');
 });
 
@@ -62,5 +80,6 @@ User.find({}, function(err, users) {
   // object of all the users
   console.log(users);
 });
+
 
 module.exports = User;

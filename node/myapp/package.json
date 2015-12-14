@@ -1,17 +1,29 @@
 {
-  "name": "myapp",
-  "version": "0.0.0",
-  "description": "simple application",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "jwt-auth-poc",
+  "description": "Hapijs JWT POC",
+  "version": "0.1.0",
+  "main": "server",
+  "engines": {
+    "node": ">=0.10.22"
   },
-  "author": "Richa Dagar",
-  "license": "BSD-2-Clause",
   "dependencies": {
-    "hapi": "~10.0.0",
-    "mongoose": "~4.2.10",
-    "bcrypt": "~0.8.5",
-    "jsonwebtoken": "~5.4.1"
+    "boom": "^2.6.1",
+    "hapi": "^8.2.0",
+    "hapi-auth-jwt": "^2.1.0",
+    "joi": "^5.1.0",
+    "jsonwebtoken": "^3.2.2",
+    "moment": "^2.9.0",
+    "mongoose": "3.8.x",
+    "mongoose-auto-increment": "^3.2.0",
+    "bcrypt": "~0.8.5"
+  },
+  "keywords": [
+    "node.js",
+    "hapi.js",
+    "JWT"
+  ],
+  "author": {
+    "name": "Richa Dagar",
+    "email": "richa.dagar@gmail.com"
   }
 }

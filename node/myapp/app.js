@@ -1,85 +1,40 @@
+var Hapi = require('hapi'),
+    Routes = require('./routes'),
+    Db = require('./config/db'),
+    Moment = require('moment'),
+    Config = require('./config/config');
 
-var Hapi   = require('hapi');
-var bcrypt = require('bcrypt');
-var jwt    = require("jsonwebtoken");
+
+var app = {};
+app.config = Config;
+
+var privateKey = app.config.key.privateKey;
+var ttl = app.config.key.tokenExpiry;
 
 var server = new Hapi.Server();
-server.connection({ port: 8081 });
+server.connection({ port: app.config.server.port });
 
-server.start(function () {
-    console.log('Server running at:', server.info.uri);
-});
-
-server.route({
-    method: 'GET',
-    path: '/authenticate/{user?}/{password}',
-    handler: function (request, reply) {
-        var user = request.params.user ? encodeURIComponent(request.params.user) : 'stranger';
-        reply('Hello ' + user + '!');
+// Validate function to be injected 
+var validate = function(token, callback) {
+    // Check token timestamp
+    var diff = Moment().diff(Moment(token.iat * 1000));
+    if (diff > ttl) {
+        return callback(null, false);
     }
-});
-
-
-var mongoose = require('mongoose');
-
-var db = mongoose.connect('mongodb://127.0.0.1:27017/test');
-
-mongoose.connection.once('connected', function() {
-  console.log("Database connected successfully")
-});
-
-var Schema = mongoose.Schema;
-
-// create a schema
-var userSchema = new Schema({
-  name: String,
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  admin: Boolean,
-  location: String,
-  created_at: Date,
-  updated_at: Date
-});
-
-userSchema.pre('save', function(next) {
-    var currentDate = new Date();
-    this.updated_at = currentDate;
-    if (!this.created_at)
-    this.created_at = currentDate;  
-    var user = this;
-    if (!user.isModified('password')) return next();
-    bcrypt.genSalt(10, function(err, salt) {
-          if (err) return next(err);
-          bcrypt.hash(user.password, salt, function(err, hash) {
-            if (err) return next(err);
-            user.password = hash;            
-          });
+    callback(null, true, token);
+};
+// Plugins
+server.register([{
+    register: require('hapi-auth-jwt')
+}], function(err) {
+    server.auth.strategy('token', 'jwt', {
+        validateFunc: validate,
+        key: privateKey
     });
-    next();
+
+    server.route(Routes.endpoints);
 });
 
-var User = mongoose.model('User', userSchema);
-
-var rd = new User({
-  name: 'Richa Dagar',
-  username: 'richadagar@gmail.com',
-  password: 'password1',
-  admin:true,
-  location:'Viman Nagar'
+server.start(function() {
+    console.log('Server started ', server.info.uri);
 });
-
-rd.save(function(err) {
-  if (err) throw err;
-  console.log('User saved successfully!');
-});
-
-// get all the users
-User.find({}, function(err, users) {
-  if (err) throw err;
-
-  // object of all the users
-  console.log(users);
-});
-
-
-module.exports = User;
